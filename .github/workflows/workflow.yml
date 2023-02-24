@@ -1,0 +1,17 @@
+name: My DigitalOcean workflow
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  list-droplets:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Run doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.dop_v1_0a454d38345c9245c678ad4bebae2836995d44f54884e5fc2887430898bfd6d4 }}
+        command: compute droplet list
