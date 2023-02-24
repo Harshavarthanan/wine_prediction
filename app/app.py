@@ -17,7 +17,14 @@ with open('standard_scaler.pkl', 'rb') as f:
 with open('pca.pkl', 'rb') as f:
     pca = pickle.load(f)
 
+@app.route('/api/test', methods=['GET'])
+def test():
+    # Model code
+    response = {'message': 'API hit iimv'}
+    # encode response using jsonpickle
+    response_pickled = jsonpickle.encode(response)
 
+    return Response(response=response_pickled, status=200, mimetype="application/json")
 
 # Define the home page that displays the HTML form
 @app.route('/api/home')
@@ -75,4 +82,4 @@ def predict():
 
 # Run the Flask application
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=22)
+    app.run(host="0.0.0.0", port=5000)
